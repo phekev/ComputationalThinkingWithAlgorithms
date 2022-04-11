@@ -48,43 +48,43 @@ public class Controller {
 	
 
 	//Runs the benchmarking test on randomly sorted data
-	private void runRandomSortingTest (List<Sort> randomSortAlgorithms, int numOfTimesToRunTest) {
+	private void runRandomSortingTest (List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
 
 		// Run a test for each array of size n on each algorithm X number of times
 		for (int n : BENCHMARK_ARRAYSIZE) {
 
-			for(int j=0; j<randomSortAlgorithms.size(); j++) {
+			for(int j=0; j<sortingAlgorithms.size(); j++) {
 				double totalTestTime = 0.0; 
 				double averageTestTime = 0.0;
 				
-				totalTestTime += runTestsOnRandomlySortedData(randomSortAlgorithms.get(j), n, numOfTimesToRunTest);
+				totalTestTime += runOnRandomlySortedData(sortingAlgorithms.get(j), n, numOfTimesToRunTest);
 				averageTestTime = totalTestTime / numOfTimesToRunTest;
 				
-				randomSortAlgorithms.get(j).randomSortBenchmarkResults.put(n , averageTestTime);
+				sortingAlgorithms.get(j).randomSortBenchmarkResults.put(n , averageTestTime);
 			}
 		}	
 	}
 	
-	private void runPartialSortingTest(List<Sort> partialSortResults, int numOfTimesToRunTest) {
+	private void runPartialSortingTest(List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
 
 		// Run a test for each array of size n on each algorithm X number of times
 		for (int n : BENCHMARK_ARRAYSIZE) {
 			
-			for(int j=0; j<partialSortResults.size(); j++) {
+			for(int j=0; j<sortingAlgorithms.size(); j++) {
 				
 				double totalTestTime = 0.0; 
 				double averageTestTime = 0.0;
 				
-				totalTestTime += runTestsOnPartiallySortedData(partialSortResults.get(j), n, numOfTimesToRunTest);
+				totalTestTime += runOnPartiallySortedData(sortingAlgorithms.get(j), n, numOfTimesToRunTest);
 				averageTestTime = totalTestTime / numOfTimesToRunTest;
 				
-				partialSortResults.get(j).partialSortBenchmarkResults.put(n , averageTestTime);
+				sortingAlgorithms.get(j).partialSortBenchmarkResults.put(n , averageTestTime);
 				
 			}
 		}
 	}
 	
-	private double runTestsOnRandomlySortedData(Sort sortAlgo, int n, int numOfIterations) {
+	private double runOnRandomlySortedData(Sort sortAlgo, int n, int numOfIterations) {
 		double testTime = 0.0;
 		for (int i = 0; i<numOfIterations; i++) {
 			testTime += sortAlgo.timer(sortAlgo, CreateArrays.createRandomArray(n));
@@ -92,7 +92,7 @@ public class Controller {
 		return testTime;
 	}
 	
-	private double runTestsOnPartiallySortedData(Sort sortAlgo, int n, int numOfIterations) {
+	private double runOnPartiallySortedData(Sort sortAlgo, int n, int numOfIterations) {
 		double testTime = 0.0;
 		for (int i = 0; i<numOfIterations; i++) {
 			testTime += sortAlgo.timer(sortAlgo, CreateArrays.partialSortedArray(n));
