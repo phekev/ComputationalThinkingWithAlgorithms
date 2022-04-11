@@ -13,7 +13,7 @@ public class Controller {
 
 	
 	// Input size n for each test array
-	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500, 50000, 100000, 500000};
+	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500};
 				
 
 	/*
@@ -42,6 +42,8 @@ public class Controller {
 		
 		//Print results of benchmarks on randomly sorted data
 		ResultsPrinter.print(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
+		
+		WriteResultstoFile.write(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
 
 	}
 	
