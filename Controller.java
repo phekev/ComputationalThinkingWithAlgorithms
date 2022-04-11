@@ -22,15 +22,15 @@ public class Controller {
 	public static void main(String[] args) {
 		
 		//Create an instance of each sorting algorithm
-		InsertionSort insertRandom = new InsertionSort();
-		QuickSort quickRandom = new QuickSort();
-		RadixSortLSD radixRandom = new RadixSortLSD();
-		ShellSort shellRandom = new ShellSort();
-		TimSort timsRandom  = new TimSort();
+		InsertionSort insertSort = new InsertionSort();
+		QuickSort quickSort = new QuickSort();
+		RadixSortLSD radixSort = new RadixSortLSD();
+		ShellSort shellSort = new ShellSort();
+		TimSort timSort  = new TimSort();
 		
 		//List to store results of benchmarks of each sorting algorithm
 		List<Sort> resultsOfBenchmark = new ArrayList<Sort>(
-					List.of(insertRandom, quickRandom, radixRandom, shellRandom, timsRandom));
+					List.of(insertSort, quickSort, radixSort, shellSort, timSort));
 		
 
 		//How many times to run the benchmark on each sorting algorithm			
@@ -52,6 +52,7 @@ public class Controller {
 
 		// Run a test for each array of size n on each algorithm X number of times
 		for (int n : BENCHMARK_ARRAYSIZE) {
+
 			for(int j=0; j<randomSortAlgorithms.size(); j++) {
 				double totalTestTime = 0.0; 
 				double averageTestTime = 0.0;
@@ -68,6 +69,7 @@ public class Controller {
 
 		// Run a test for each array of size n on each algorithm X number of times
 		for (int n : BENCHMARK_ARRAYSIZE) {
+			
 			for(int j=0; j<partialSortResults.size(); j++) {
 				
 				double totalTestTime = 0.0; 
