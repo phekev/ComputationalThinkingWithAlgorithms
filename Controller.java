@@ -29,7 +29,7 @@ public class Controller {
 		TimSort timsRandom  = new TimSort();
 		
 		//List to store results of benchmarks of each sorting algorithm
-		List<Sort> randomSortResults = new ArrayList<Sort>(
+		List<Sort> resultsOfBenchmark = new ArrayList<Sort>(
 					List.of(insertRandom, quickRandom, radixRandom, shellRandom, timsRandom));
 		
 
@@ -37,11 +37,11 @@ public class Controller {
 		int numOfTimesToRunTest = 10;
 		
 		Controller controller = new Controller();
-		controller.runRandomSortingTest(randomSortResults, numOfTimesToRunTest);
-		controller.runPartialSortingTest(randomSortResults, numOfTimesToRunTest);
+		controller.runRandomSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
+		controller.runPartialSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
 		
 		//Print results of benchmarks on randomly sorted data
-		ResultsPrinter.print(randomSortResults, BENCHMARK_ARRAYSIZE);
+		ResultsPrinter.print(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
 
 	}
 	
