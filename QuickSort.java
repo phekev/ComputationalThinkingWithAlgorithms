@@ -4,8 +4,9 @@ public class QuickSort extends Sort {
 	
 	String sortName = "QuickSort\t";
 
-	/*
-	 *  Recursively 
+	/* 
+	 *  QuickSort#sort()
+	 *  Method with extra parameters to call QuickSort#quickSort()
 	 */
 	public void sort (int[] array) {
 		quickSort(array, 0, array.length-1);
