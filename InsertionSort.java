@@ -1,20 +1,15 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
-import java.util.LinkedHashMap;
-
 public class InsertionSort extends Sort{
 	
 	String sortName = "InsertionSort\t";
-
-	public InsertionSort() {
-	}
 	
 	/*
 	 *  Starting on the left compare each element with the one to its left.
 	 *  If the element is larger than the left we swap these two elements
 	 *   and continue working to the left comparing until the element to the left is smaller than the current element.
  	 */
-	private void insertionSort(int[] array) {
+	public void sort(int[] array) {
 
 		for (int i = 1; i < array.length; i++) {
 			int temp = array[i];

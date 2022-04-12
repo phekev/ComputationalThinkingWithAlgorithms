@@ -1,7 +1,5 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
-import java.util.LinkedHashMap;
-
 public class ShellSort  extends Sort{
 
 	String sortName = "ShellSort\t";

@@ -6,6 +6,13 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+
+/*
+ *  Utility class to print results to csv file 
+ *  Used in conjunction with shellscript to run program a number of times to get more stable results.
+ *  
+ *  This is not necessary for the functioning of the benchmarking process!
+ */
 public class WriteResultstoFile {
 	
 	public static void write(List<Sort> sorts, int[] testInputSizes) {

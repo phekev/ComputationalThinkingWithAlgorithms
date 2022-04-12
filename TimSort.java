@@ -1,7 +1,5 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
-import java.util.LinkedHashMap;
-
 public class TimSort  extends Sort{
 
 	String sortName = "TimSort\t\t";

@@ -16,12 +16,11 @@ public class Controller {
 	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500};
 				
 
-	/*
-	 * Run 
-	 */
 	public static void main(String[] args) {
 		
-		//Create an instance of each sorting algorithm
+		/*
+		 * Create an instance of each sorting algorithm
+		 */
 		InsertionSort insertSort = new InsertionSort();
 		QuickSort quickSort = new QuickSort();
 		RadixSortLSD radixSort = new RadixSortLSD();
@@ -40,9 +39,10 @@ public class Controller {
 		controller.runRandomSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
 		controller.runPartialSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
 		
-		//Print results of benchmarks on randomly sorted data
+		//Print results of benchmarks to the console
 		ResultsPrinter.print(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
 		
+		// Write results of benchmarks to a CSV file
 		WriteResultstoFile.write(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
 
 	}
@@ -67,6 +67,8 @@ public class Controller {
 		}	
 	}
 	
+	
+	//Runs the benchmarking test on partially sorted / nearly sorted arrays
 	private void runPartialSortingTest(List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
 
 		// Run a test for each array of size n on each algorithm X number of times
@@ -86,6 +88,7 @@ public class Controller {
 		}
 	}
 	
+	
 	private double runOnRandomlySortedData(Sort sortAlgo, int n, int numOfIterations) {
 		double testTime = 0.0;
 		for (int i = 0; i<numOfIterations; i++) {
@@ -93,6 +96,7 @@ public class Controller {
 		}
 		return testTime;
 	}
+	
 	
 	private double runOnPartiallySortedData(Sort sortAlgo, int n, int numOfIterations) {
 		double testTime = 0.0;

@@ -3,8 +3,14 @@ package ctaProject.ComputationalThinkingWithAlgorithms;
 import java.util.List;
 import java.util.Map;
 
+
+/*
+ *  Utility class to print results to the console
+ *  
+ */
 public class ResultsPrinter {
 
+	// Print the test array sizes
 	public static void print(List<Sort> sorts, int[] testInputSizes) {
 		System.out.print("\t\t   |   ");
 		for( int i = 0; i < testInputSizes.length; i++ ) {
@@ -16,7 +22,7 @@ public class ResultsPrinter {
 		
 	}
 
-		
+		// Print the results of the pseudorandom number sorting benchmarks
 		private static void printRandom(List<Sort> sorts, int[] testInputSizes) {
 
 			for (int j = 0; j < sorts.size(); j++) {
@@ -28,7 +34,8 @@ public class ResultsPrinter {
 
 			}
 		}
-
+		
+		// Print results of the partially sorted sorting benchmarks
 		private static void printPartial(List<Sort> sorts, int[] testInputSizes) {
 
 			for (int j = 0; j < sorts.size(); j++) {

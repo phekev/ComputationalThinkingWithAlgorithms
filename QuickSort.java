@@ -1,7 +1,5 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
-import java.util.LinkedHashMap;
-
 public class QuickSort extends Sort {
 	
 	String sortName = "QuickSort\t";
