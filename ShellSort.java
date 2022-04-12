@@ -3,23 +3,11 @@ package ctaProject.ComputationalThinkingWithAlgorithms;
 import java.util.LinkedHashMap;
 
 public class ShellSort  extends Sort{
-	
-	LinkedHashMap<Integer, Double> randomSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
-	LinkedHashMap<Integer, Double> partialSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
+
 	String sortName = "ShellSort\t";
 
-	
-	public double timer(Sort s, int[] array) {
-		long startTime = System.nanoTime();
-		this.shellSort(array);
-		long endTime = System.nanoTime();
-		long timeElapsed = endTime - startTime;
-		double elapsedMillis = (double) timeElapsed / 1000000;
-		return (double) elapsedMillis;
-	}
-
 	/* function to sort arr using shellSort */
-	private void shellSort(int array[])
+	public void sort(int array[])
 	{
 		int n = array.length;
 

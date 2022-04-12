@@ -3,21 +3,13 @@ package ctaProject.ComputationalThinkingWithAlgorithms;
 import java.util.LinkedHashMap;
 
 public class TimSort  extends Sort{
-	
-	LinkedHashMap<Integer, Double> randomSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
-	LinkedHashMap<Integer, Double> partialSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
+
 	String sortName = "TimSort\t\t";
 
-	private static final int RUN = 32; //size of a run, typically 32 or 64
+	private static final int RUN = 32; //size of a run, typically 32 or 64	
 	
-	
-	public double timer(Sort t, int[] array) {
-		long startTime = System.nanoTime();
-		this.timSort(array, array.length-1);
-		long endTime = System.nanoTime();
-		long timeElapsed = endTime - startTime;
-		double elapsedMillis = (double) timeElapsed / 1000000;
-		return (double) elapsedMillis;
+	public void sort(int[] array) {
+		timSort(array, array.length-1);
 	}
 	
 	int min(int a, int b)    

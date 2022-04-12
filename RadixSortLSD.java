@@ -3,20 +3,8 @@ package ctaProject.ComputationalThinkingWithAlgorithms;
 import java.util.LinkedHashMap;
 
 public class RadixSortLSD  extends Sort{
-	
-	LinkedHashMap<Integer, Double> randomSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
-	LinkedHashMap<Integer, Double> partialSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
-	String sortName = "RadixSortLSD \t";
-	
-	
-	public double timer(Sort r, int[] array) {
-		long startTime = System.nanoTime();
-		this.sort(array);
-		long endTime = System.nanoTime();
-		long timeElapsed = endTime - startTime;
-		double elapsedMillis = (double) timeElapsed / 1000000;
-		return (double) elapsedMillis;
-	}
+
+	String sortName = "RadixSortLSD \t";	
 	
 	/*
 	 *  Radix Sort Least Significant Digit

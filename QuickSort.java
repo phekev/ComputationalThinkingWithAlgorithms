@@ -4,26 +4,16 @@ import java.util.LinkedHashMap;
 
 public class QuickSort extends Sort {
 	
-	// Store benchmark results
-	LinkedHashMap<Integer, Double> randomSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
-	LinkedHashMap<Integer, Double> partialSortBenchmarkResults = new LinkedHashMap<Integer, Double>();
 	String sortName = "QuickSort\t";
 
-	// Times the running of the sorting algorithm
-	public double timer(Sort q, int[] array) {
-		long startTime = System.nanoTime();
-		this.quickSort(array, 0, array.length-1);
-		long endTime = System.nanoTime();								//Run the sorting algorithm on the array
-		long timeElapsed = endTime - startTime;
-		double elapsedMillis = (double) timeElapsed / 1000000;
-		return (Double) elapsedMillis;
-	}
-	
 	/*
 	 *  Recursively 
 	 */
+	public void sort (int[] array) {
+		quickSort(array, 0, array.length-1);
+	}
 	
-	public void quickSort(int[] array, int lowIndex, int highIndex) {
+	private void quickSort(int[] array, int lowIndex, int highIndex) {
 		if (lowIndex < highIndex) {
 			int partitionIndex = partition(array, lowIndex, highIndex);
 			quickSort(array, lowIndex, partitionIndex - 1);
