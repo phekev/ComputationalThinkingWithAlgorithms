@@ -13,7 +13,7 @@ public class Controller {
 
 	
 	// Input size n for each test array
-	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500};
+	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500,100000};
 				
 
 	public static void main(String[] args) {
