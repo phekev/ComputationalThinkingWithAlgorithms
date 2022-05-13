@@ -1,23 +1,16 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
+
 
 public class Controller {
 
 	
 	// Input size n for each test array
-	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500,100000};
-	
-	public enum dataType { RANDOM, PARTIAL }; 									// Types of data to be sorted.... random, partially sorted
+	static final int[] BENCHMARK_ARRAYSIZE = {10, 100, 1000, 2500, 5000, 7500, 10000, 20000, 50000};
+										
 				
-
 	public static void main(String[] args) {
 				
 		
@@ -40,7 +33,7 @@ public class Controller {
 		
 		Controller controller = new Controller();
 		controller.runTestWithRandomData(resultsOfBenchmark, numOfTimesToRunTest);
-		controller.runTest(resultsOfBenchmark, numOfTimesToRunTest);
+		controller.runPartialSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
 		
 		//Print results of benchmarks to the console
 		ResultsPrinter.print(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
@@ -50,38 +43,48 @@ public class Controller {
 
 	}
 	
-	
-
+	/*
+	*   An issue I ran into was the duplication of code to run the two separate tests
+	*   Initially I used an enum and passed a flag to set if the test was to random or partially sorted
+	*   This was difficult to follow and unintuitive
+	*   There is probably a pattern for this that I just haven't seen.
+	*   	
+	*/
 	//Runs the benchmarking test on randomly sorted data
+	//Times the total cumulative time to run the sorting algorithm for a given array size n
+	//@param sortingAlgorithms A list of the sorting algorithms to be benchmarked
+	//@param numOfTimesToRunTest How many times to sort a new array  
 	private void runTestWithRandomData (List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
-
-		// Run a test for each array of size n on each algorithm X number of times
+		// Run a test for each array of size n on each algorithm 
 		for (int n : BENCHMARK_ARRAYSIZE) {
-			Sort.timeManyTests(sortingAlgorithms, numOfTimesToRunTest, n);
+			for(int sortAlgoToTest=0; sortAlgoToTest<sortingAlgorithms.size(); sortAlgoToTest++) {
+				double totalTestTime = 0.0; 
+				double averageTestTime = 0.0;
+				// Cumulative time taken to test array[n] x number of times
+				totalTestTime += sortingAlgorithms.get(sortAlgoToTest)
+									.runOnRandomlySortedData(n, numOfTimesToRunTest);
+				averageTestTime = totalTestTime / numOfTimesToRunTest;
+				// Put the average time into the linkedHashMap for the sorting algorithm being run
+				sortingAlgorithms.get(sortAlgoToTest).randomSortBenchmarkResults.put(n , averageTestTime);
+			}
 		}	
 	}
 
-
-
-	
-	
-	
-	
 	//Runs the benchmarking test on partially sorted / nearly sorted arrays
 	private void runPartialSortingTest(List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
 
-		// Run a test for each array of size n on each algorithm X number of times
+		// Run a test for each array of size n on each algorithm
 		for (int n : BENCHMARK_ARRAYSIZE) {
 			
 			for(int sortAlgoToTest=0; sortAlgoToTest<sortingAlgorithms.size(); sortAlgoToTest++) {
 				
 				double totalTestTime = 0.0; 
 				double averageTestTime = 0.0;
-				
-				totalTestTime += sortingAlgorithms.get(sortAlgoToTest)
-							.runOnPartiallySortedData(n, numOfTimesToRunTest);
+				// Cumulative time taken to test array[n] x number of times
+				totalTestTime += sortingAlgorithms.get(sortAlgoToTest).runOnPartiallySortedData(n, numOfTimesToRunTest);
 				averageTestTime = totalTestTime / numOfTimesToRunTest;
 				
+				// Put the average time into the linkedHashMap for the sorting algorithm being run
 				sortingAlgorithms.get(sortAlgoToTest).partialSortBenchmarkResults.put(n , averageTestTime);
 				
 			}

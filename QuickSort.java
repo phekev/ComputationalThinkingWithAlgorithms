@@ -26,6 +26,7 @@ public class QuickSort extends Sort {
 		 * This can be a poor choice especially for partially sorted data
 		 */
 		int pivot = array[high];
+		// Initially i will have a value of -1
 		int i = low - 1;
 
 		for (int j = low; j <= high; j++) {

@@ -4,12 +4,21 @@ public class ShellSort  extends Sort{
 
 	String sortName = "ShellSort\t";
 
-	/* function to sort arr using shellSort */
+	/*
+	 * Shell sort
+	 * Code taken from Geeks for Geeks (https://www.geeksforgeeks.org)
+	 * https://www.geeksforgeeks.org/shellsort/
+	 *  
+	 */
+	
+	
+	/* method to sort array using shellSort */
 	public void sort(int array[])
 	{
 		int n = array.length;
 
 		// Start with a big gap, then reduce the gap
+		// Gap reduces by half each loop eg. 32 -> 16 -> 8 -> 4 -> 2
 		for (int gap = n/2; gap > 0; gap /= 2)
 		{
 			// Do a gapped insertion sort for this gap size.

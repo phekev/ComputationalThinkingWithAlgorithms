@@ -1,88 +1,75 @@
 package ctaProject.ComputationalThinkingWithAlgorithms;
 
+import java.util.Arrays;
+
+
 public class RadixSortLSD  extends Sort{
 
 	String sortName = "RadixSortLSD \t";	
 	
 	/*
 	 *  Radix Sort Least Significant Digit
-	 *  Code taken from Section 5.1 of
-	 *  Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
-	 *  via Princeton.edu 12/03/2022
-	 *   https://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/LSD.java.html
+	 *  Code taken from Geekific (https://www.youtube.com/c/Geekific)
+	 *  https://github.com/geekific-official/geekific-youtube/blob/main/sort-radix/src/com/youtube/geekific/RadixSort.java
 	 *  
 	 */
 	
-	 private static final int BITS_PER_BYTE = 8;
+	
 	
     public void sort(int[] arr) {
-        final int BITS = 32;                 // each int is 32 bits 
-        final int R = 1 << BITS_PER_BYTE;    // each bytes is between 0 and 255
-        final int MASK = R - 1;              // 0xFF
-        final int w = BITS / BITS_PER_BYTE;  // each int is 4 bytes
-
-        int n = arr.length;
-        int[] aux = new int[n];
-
-        for (int d = 0; d < w; d++) {         
-
-            // compute frequency counts
-            int[] count = new int[R+1];
-            for (int i = 0; i < n; i++) {           
-                int c = (arr[i] >> BITS_PER_BYTE*d) & MASK;
-                count[c + 1]++;
-            }
-
-            // compute cumulates
-            for (int r = 0; r < R; r++)
-                count[r+1] += count[r];
-
-            // for most significant byte, 0x80-0xFF comes before 0x00-0x7F
-            if (d == w-1) {
-                int shift1 = count[R] - count[R/2];
-                int shift2 = count[R/2];
-                for (int r = 0; r < R/2; r++)
-                    count[r] += shift1;
-                for (int r = R/2; r < R; r++)
-                    count[r] -= shift2;
-            }
-
-            // move data
-            for (int i = 0; i < n; i++) {
-                int c = (arr[i] >> BITS_PER_BYTE*d) & MASK;
-                aux[count[c]++] = arr[i];
-            }
-
-            // copy back
-            for (int i = 0; i < n; i++)
-                arr[i] = aux[i];
+    	// Gets the max value from the array
+        int max = Arrays.stream(arr).max().orElse(Integer.MAX_VALUE);
+        // Increasing exp by an order of ten each iteration. So it goes 1, 10, 100 etc. This is the divisor for extracting the digits
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countSort(exp, arr);
         }
+        
     }
-    
-    
-    /*****************************************************************************
-    *  Copyright 2002-2020, Robert Sedgewick and Kevin Wayne.
-    *
-    *  This file is part of algs4.jar, which accompanies the textbook
-    *
-    *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
-    *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
-    *      http://algs4.cs.princeton.edu
-    *
-    *
-    *  algs4.jar is free software: you can redistribute it and/or modify
-    *  it under the terms of the GNU General Public License as published by
-    *  the Free Software Foundation, either version 3 of the License, or
-    *  (at your option) any later version.
-    *
-    *  algs4.jar is distributed in the hope that it will be useful,
-    *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-    *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    *  GNU General Public License for more details.
-    *
-    *  You should have received a copy of the GNU General Public License
-    *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
-    ******************************************************************************/
+    // A modified version of counting sort
+    private void countSort(int exp, int[] arr) {
+    	
+        int[] output = new int[arr.length];
+        // countArray has length 10 as it only needs to store the count of the digits 0-9
+        int[] countArray = new int[10];
+
+        // Store count of occurrences in countArray[]
+        for (int value : arr) {
+        	// This is where the digit is 'extracted' eg value = 638, exp=100 -> countArray[(638/100)%10] -> countArray[6]
+            countArray[(value / exp) % 10]++;
+        }
+
+        // Change countArray[i] so that countArray[i] now contains
+        // actual position of this digit in output[]
+        for (int i = 1; i < 10; i++) {
+            countArray[i] += countArray[i - 1];
+        }
+
+        // Build the output array
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int current = arr[i];
+            
+            int positionInArray = countArray[(current / exp) % 10] - 1;
+            output[positionInArray] = current;
+            countArray[(current / exp) % 10]--;
+        }
+
+        System.arraycopy(output, 0, arr, 0, arr.length);
+        
+        // The method sort() below splits (partitions) the input array into an array of negative numbers and of positive numbers
+        // I was only dealing with positive numbers so don't need this method
+        /*
+        public void sort() {
+            Map<Boolean, List<Integer>> splitArray = Arrays.stream(arr).boxed().collect(Collectors.partitioningBy(i -> i < 0));
+            int[] negativeInts = radixSort(splitArray.get(true).stream().mapToInt(Integer::intValue).map(Math::abs).toArray());
+            int[] positiveInts = radixSort(splitArray.get(false).stream().mapToInt(Integer::intValue).toArray());
+            for (int i = negativeInts.length - 1, j = 0; i >= 0; i--, j++) arr[j] = -negativeInts[i];
+            System.arraycopy(positiveInts, 0, arr, negativeInts.length, positiveInts.length);
+        }
+    	*/
+
+    }
+
+
 	
     @Override
 	public String toString () {
