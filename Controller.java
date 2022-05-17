@@ -24,7 +24,7 @@ public class Controller {
 		TimSort timSort  = new TimSort();
 		
 		//List to store results of benchmarks of each sorting algorithm
-		List<Sort> resultsOfBenchmark = new ArrayList<Sort>(
+		List<Sort> sortingAlgorithms = new ArrayList<Sort>(
 					List.of(insertSort, quickSort, radixSort, shellSort, timSort));
 		
 
@@ -32,14 +32,14 @@ public class Controller {
 		int numOfTimesToRunTest = 10;
 		
 		Controller controller = new Controller();
-		controller.runTestWithRandomData(resultsOfBenchmark, numOfTimesToRunTest);
-		controller.runPartialSortingTest(resultsOfBenchmark, numOfTimesToRunTest);
+		controller.runRandomSortingTest(sortingAlgorithms, numOfTimesToRunTest);
+		controller.runPartialSortingTest(sortingAlgorithms, numOfTimesToRunTest);
 		
 		//Print results of benchmarks to the console
-		ResultsPrinter.print(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
+		ResultsPrinter.print(sortingAlgorithms, BENCHMARK_ARRAYSIZE);
 		
 		// Write results of benchmarks to a CSV file
-		WriteResultstoFile.write(resultsOfBenchmark, BENCHMARK_ARRAYSIZE);
+		WriteResultstoFile.write(sortingAlgorithms, BENCHMARK_ARRAYSIZE);
 
 	}
 	
@@ -54,7 +54,7 @@ public class Controller {
 	//Times the total cumulative time to run the sorting algorithm for a given array size n
 	//@param sortingAlgorithms A list of the sorting algorithms to be benchmarked
 	//@param numOfTimesToRunTest How many times to sort a new array  
-	private void runTestWithRandomData (List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
+	private void runRandomSortingTest (List<Sort> sortingAlgorithms, int numOfTimesToRunTest) {
 		// Run a test for each array of size n on each algorithm 
 		for (int n : BENCHMARK_ARRAYSIZE) {
 			for(int sortAlgoToTest=0; sortAlgoToTest<sortingAlgorithms.size(); sortAlgoToTest++) {

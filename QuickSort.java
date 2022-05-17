@@ -12,6 +12,12 @@ public class QuickSort extends Sort {
 		quickSort(array, 0, array.length-1);
 	}
 	
+	/*
+	 * Quicksort
+	 * Code taken from Geeks for Geeks (https://www.geeksforgeeks.org)
+	 * https://www.geeksforgeeks.org/quick-sort/
+	 */
+	
 	private void quickSort(int[] array, int lowIndex, int highIndex) {
 		if (lowIndex < highIndex) {
 			int partitionIndex = partition(array, lowIndex, highIndex);
@@ -20,22 +26,22 @@ public class QuickSort extends Sort {
 		}
 	}
 
-	private int partition(int[] array, int low, int high) {
+	private int partition(int[] array, int lowIndex, int highIndex) {
 
 		 /* Setting pivot to the element at the high index.
 		 * This can be a poor choice especially for partially sorted data
 		 */
-		int pivot = array[high];
+		int pivot = array[highIndex];
 		// Initially i will have a value of -1
-		int i = low - 1;
+		int i = lowIndex - 1;
 
-		for (int j = low; j <= high; j++) {
+		for (int j = lowIndex; j <= highIndex; j++) {
 			if (array[j] < pivot) {
 				i++;
 				swap(array, i, j);
 			}
 		}
-		swap(array, i + 1, high);
+		swap(array, i + 1, highIndex);
 		return (i + 1);
 	}
 

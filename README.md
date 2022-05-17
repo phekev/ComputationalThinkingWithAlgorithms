@@ -4,6 +4,8 @@
  Benchmark various sorting algorithms on various arrays of size n of 
  i) uniformly distributed psuedorandom numbers
  ii) partially sorted / nearly sorted numbers
+
+ Controller.class contains main() 
  
  The sorting algorithms choosen are:
  1. Insertion sort - a simple comparison based sort
