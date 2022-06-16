@@ -5,7 +5,9 @@
  i) uniformly distributed psuedorandom numbers
  ii) partially sorted / nearly sorted numbers
 
+ Run 'java ctaProject.ComputationalThinkingWithAlgorithms.Controller'
  Controller.class contains main() 
+ 
  
  The sorting algorithms choosen are:
  1. Insertion sort - a simple comparison based sort
